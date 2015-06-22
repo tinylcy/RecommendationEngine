@@ -98,7 +98,7 @@ public class HDFSDao {
 		FileSystem.getLocal(conf).setVerifyChecksum(false);
 		fs.copyFromLocalFile(new Path(local), new Path(remote));
 		System.out.println("copy from: " + local + " to " + remote);
-		fs.close();
+		fs.close(); 
 	}
 
 	public void download(String remote, String local) throws IOException {
@@ -108,7 +108,7 @@ public class HDFSDao {
 		FileSystem.getLocal(conf).setVerifyChecksum(false);
 		fs.copyToLocalFile(path, new Path(local));
 		System.out.println("download: from" + remote + " to " + local);
-		fs.close();
+		fs.close(); 
 	}
 
 	public void cat(String remoteFile) throws IOException {
