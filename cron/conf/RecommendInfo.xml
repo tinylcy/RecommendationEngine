@@ -9,4 +9,4 @@
 		<param key="m">1</param>
 		<param key="fields-terminated-by">','</param>
 	</sqoop-shell>
-</root>
+</root> 
