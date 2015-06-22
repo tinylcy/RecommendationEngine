@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<sqoop-shell type="export">
+		<param key="connect">jdbc:mysql://localhost:3306/Recommend</param>
+		<param key="username">root</param>
+		<param key="password">112358</param>
+		<param key="table">RecommendInfo</param>
+		<param key="export-dir">/user/hadoop/Recommend/step7/part-00000</param>
+		<param key="m">1</param>
+		<param key="fields-terminated-by">','</param>
+	</sqoop-shell>
+</root>
