@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<sqoop-shell type="import">
+		<param key="connect">jdbc:mysql://localhost:3306/Recommend</param>
+		<param key="username">root</param>
+		<param key="password">123456</param>
+		<param key="target-dir">/user/hadoop/$dt</param>
+		<param key="query">'select userID,movieID,pref from Recommend.ModifyRecords where modifyDate$flag"\$CONDITIONS" and $CONDITIONS'</param>
+		<param key="m">1</param>
+		<param key="fields-terminated-by">','</param>
+	</sqoop-shell>
+</root>
