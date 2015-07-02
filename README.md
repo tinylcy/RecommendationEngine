@@ -6,7 +6,7 @@ itemBasedRec的实现参考《Mahout in Action》中1.6 Distributing recommendat
 
 itemSimilarity和userSimilarity分别计算了物品的相似度和用户的相似度，核心思想参考了John S.Breese的论文"Empirical Analysis of Predictive Algorithms for Collaborative Filtering"。
 
-基于以上我实现了一个电影推荐系统，推荐系统的核心功能为大众化电影推荐、个性化电影推荐、相似物品推荐、相似用户推荐。推荐引擎部分为基于Item的协同过滤推荐算法和基于User的协同过滤推荐算法混合的推荐引擎组，其中基于Item的协同过滤推荐算法通过itemBasedRec实现，作为离线计算部分(同时包括itemSimilarity和userSimilarity的计算)，基于User的协同过滤推荐算法通过Mahout实现，作为在线计算部分。
+推荐引擎为基于Item的协同过滤推荐算法和基于User的协同过滤推荐算法混合的推荐引擎组，其中基于Item的协同过滤推荐算法通过itemBasedRec实现，作为离线计算部分(同时包括itemSimilarity和userSimilarity的计算)，基于User的协同过滤推荐算法通过Mahout实现，作为在线计算部分。
 
 为了保证推荐系统可以周期性导入用户新产生的行为记录，并将推荐引擎计算后的结果导出至关系型数据库，cron利用Sqoop实现了系统定时器。
 
