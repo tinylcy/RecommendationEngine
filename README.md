@@ -19,7 +19,7 @@ Running Environment
 
 Feedback
 ===
-* Email: *tinylcy@yeah.net*  or  *timylcy@gmail.com*
+* Email: *tinylcy@yeah.net*  or  *tinylcy@gmail.com*
 * Sina Weibo: [@tinylcy][2]
 
 
