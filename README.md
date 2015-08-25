@@ -1,12 +1,25 @@
 # RecommendEngine
+Implement the Item-based Recommendation Algorithm and calculate the similarity of sers and items.
+Implementions
+=====
+* Item-based Recommendation Algorithm is the most commomly used algorithm in Recommendation System, you can refer to 《Mahout in Action》-Chapter1.6 “Distributing recommendation computations” for more details.
+* I calculated the Item-Similarity and User-Similarity by reading paper-“Empirical Analysis of Predictive Algorithms for Collaborative Filtering”， by John S.Breese.
+* I also implement a CRON for RecommendEngine so that the recently maked records can be fetched from MySQL to HDFS and after accomplish the computation tasks, the recommended result will be loaded into MySQL periodically. 
 
-* RecommendEngine是我本科毕业设计的部分代码，利用Hadoop并行化实现基于Item的协同过滤推荐算法和计算物品以及用户的相似度，并实现了推荐引擎的周期性自动化计算。
+DataSets
+==
+* I got the MovieLens DataSets from [here][1]
 
-* itemBasedRec的实现参考《Mahout in Action》中1.6 Distributing recommendation computations，这是最基本的基于物品的协同过滤推荐算法实现。
+Running Environment
+===
+* Ubuntu 14.04
+* JDK 1.7.0_75
+* Hadoop 1.2.1
+* java & python
 
-* itemSimilarity和userSimilarity分别计算了物品的相似度和用户的相似度，核心思想参考了John S.Breese的论文"Empirical Analysis of Predictive Algorithms for Collaborative Filtering"。
+Feedback
+===
+* Email: *tinylcy@yeah.net* or *timylcy@gmail.com*
 
-* 推荐引擎为基于Item的协同过滤推荐算法和基于User的协同过滤推荐算法混合的推荐引擎组，其中基于Item的协同过滤推荐算法通过itemBasedRec实现，作为离线计算部分(同时包括itemSimilarity和userSimilarity的计算)，基于User的协同过滤推荐算法通过Mahout实现，作为在线计算部分。
 
-* 为了保证推荐系统可以周期性导入用户新产生的行为记录，并将推荐引擎计算后的结果导出至关系型数据库，cron利用Sqoop实现了系统定时器。
-
+  [1]: http://grouplens.org/datasets/movielens/
