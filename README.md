@@ -1,5 +1,8 @@
 # RecommendEngine
 Implement the Item-based Recommendation Algorithm and calculate the similarity of users and items.
+
+**Notice :  I'm sorry about that it is not efficient enough in this recommendation engine when calculating the similarity matrix and computing the prediction matrix. I have optimized this problem and the code will be shared soon.**
+
 Implementions
 =====
 * Item-based Recommendation Algorithm is the most commomly used algorithm in Recommendation System, you can refer to 《Mahout in Action》Chapter1.6 “Distributing recommendation computations” for more details.
