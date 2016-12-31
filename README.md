@@ -28,11 +28,11 @@ nohup hadoop jar RecommendationEngine.jar -filename filename -reducer reducer -n
 * **n** : the number of items
 * **m** : the number of users
 * **p** : matrix block size
-* **q**: matrix block size
-* **r**: matrix block size
-* **host**: JobTracker & NameNode host
+* **q** : matrix block size
+* **r** : matrix block size
+* **host** : JobTracker & NameNode host
 * **path** : HDFS path
-* **mode**: the mode of matrix multiplication
+* **mode** : the mode of matrix multiplication
 
 ### environments
 
