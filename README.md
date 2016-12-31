@@ -8,15 +8,15 @@ Item-based CF algorithm has become one of the most popular algorithms in recomme
 
 ### algorithms
 
-The similarity($sim_{ij}$) between items($I_{i}$ and $I_{j}$) is  integrated with empirical analysis.
+The similarity between items is integrated with empirical analysis.
 
-$sim_{ij}=\frac{\sum\limits_{u \in U(I_{i})\cap U(I_{j})}\frac{1}{\log(1+|N(u)|)}}{\sqrt{|U(I_{i})||U(I_{j})|}}  $
+![image](https://github.com/tinylcy/RecommendationEngine/raw/master/data/img/similarity.png)
 
-Once the similarity between items have been calculated, the next step is computing the predicted rating of user $u$ to $I_{j}$ , which is represented as $p_{uj}$.
+Once the similarity between items have been calculated, the next step is computing the predicted rating of user *u* to item *j* , which is represented as follows.
 
-$p_{uj}=\sum\limits_{I_{i}\in I}sim_{ij}\cdot r_{ui}$
+![image](https://github.com/tinylcy/RecommendationEngine/raw/master/data/img/prediction.png)
 
-### how to Run
+### run
 
 ```shell
 nohup hadoop jar RecommendationEngine.jar -filename filename -reducer reducer -n n -m m -p p -q q -r r 
@@ -28,11 +28,11 @@ nohup hadoop jar RecommendationEngine.jar -filename filename -reducer reducer -n
 * **n** : the number of items
 * **m** : the number of users
 * **p** : matrix block size
-* **q **: matrix block size
-* **r **: matrix block size
-* **host **: JobTracker & NameNode host
+* **q**: matrix block size
+* **r**: matrix block size
+* **host**: JobTracker & NameNode host
 * **path** : HDFS path
-* **mode **: the mode of matrix multiplication
+* **mode**: the mode of matrix multiplication
 
 ### environments
 
