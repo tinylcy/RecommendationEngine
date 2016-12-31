@@ -74,9 +74,4 @@ public class CalculateSimilarityStep1 {
 		job.waitForCompletion(true);
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException,
-			IOException, InterruptedException {
-		run();
-	}
-
 }

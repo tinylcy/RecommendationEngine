@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 
 /*
  * 
- * 计算物品的相似矩阵；
+ * 计算物品的相似度矩阵；
  * 首先需要将Step4和Step5的输出数据缓存到每个结点；
  * 输入数据为Step3的输出数据（物品的同现矩阵）；
  * 输出数据格式为：ItemID_i ItemID_j similarity;
@@ -153,11 +153,6 @@ public class CalculateSimilarityStep6 {
 		FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
 		job.waitForCompletion(true);
-	}
-
-	public static void main(String[] args) throws ClassNotFoundException,
-			IOException, InterruptedException, URISyntaxException {
-		run();
 	}
 
 }

@@ -82,9 +82,4 @@ public class JMatrixMultiplicationStep1 {
 
     }
 
-    public static void main(String[] args) throws ClassNotFoundException,
-            IOException, InterruptedException {
-        run();
-    }
-
 }

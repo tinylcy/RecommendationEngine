@@ -24,88 +24,85 @@ import java.util.Iterator;
  * 
  * 构造物品的同现矩阵，即计算 物品i 和 物品j 被哪些用户同时喜欢；
  * 输入数据为Step2的输出数据(用户-物品的倒排表)；
- * 输出数据格式为：ItemID_i ItemID_j：UserID1 UserID2 ...
+ * 输出数据格式为：ItemID_i:ItemID_j UserID1,UserID2 ...
  * 在计算物品之间的相似度时，只有当两个物品至少被一个用户同时喜欢过，
  * 这两个物品才有资格计算相似度。
  */
 
 public class CalculateSimilarityStep3 {
 
-	public static class Step3_Mapper extends
-			Mapper<LongWritable, Text, Text, IntWritable> {
+    public static class Step3_Mapper extends
+            Mapper<LongWritable, Text, Text, IntWritable> {
 
-		private Text k = new Text();
-		private IntWritable v = new IntWritable();
+        private Text k = new Text();
+        private IntWritable v = new IntWritable();
 
-		public void map(LongWritable key, Text value, Context context)
-				throws IOException, InterruptedException {
-			String[] tokens = value.toString().split("[,:]");
-			int userID = Integer.parseInt(tokens[0]);
-			v.set(userID);
-			for (int i = 1; i < tokens.length; i++) {
-				for (int j = 1; j < tokens.length; j++) {
-					String itemID_a = tokens[i];
-					String itemID_b = tokens[j];
-					k.set(itemID_a + ":" + itemID_b);
-					context.write(k, v);
-				}
-			}
-		}
-	}
+        public void map(LongWritable key, Text value, Context context)
+                throws IOException, InterruptedException {
 
-	public static class Step3_Reducer extends
-			Reducer<Text, IntWritable, Text, Text> {
+            String[] tokens = value.toString().split("[,:]");
+            int userID = Integer.parseInt(tokens[0]);
+            v.set(userID);
+            for (int i = 1; i < tokens.length; i++) {
+                for (int j = 1; j < tokens.length; j++) {
+                    String itemID_a = tokens[i];
+                    String itemID_b = tokens[j];
+                    k.set(itemID_a + ":" + itemID_b);
+                    context.write(k, v);
+                }
+            }
+        }
+    }
 
-		private Text v = new Text();
+    public static class Step3_Reducer extends
+            Reducer<Text, IntWritable, Text, Text> {
 
-		public void reduce(Text key, Iterable<IntWritable> values,
-				Context context) throws IOException, InterruptedException {
-			Iterator<IntWritable> iterator = values.iterator();
-			StringBuilder builder = new StringBuilder();
-			while (iterator.hasNext()) {
-				builder.append("," + iterator.next().toString());
-			}
-			v.set(builder.toString().replaceFirst(",", ""));
-			context.write(key, v);
-		}
-	}
+        private Text v = new Text();
 
-	public static void run() throws IOException, ClassNotFoundException,
-			InterruptedException {
-		String inputPath = ItemBasedCFDriver.path.get("step3InputPath");
-		String outputPath = ItemBasedCFDriver.path.get("step3OutputPath");
+        public void reduce(Text key, Iterable<IntWritable> values,
+                           Context context) throws IOException, InterruptedException {
+            Iterator<IntWritable> iterator = values.iterator();
+            StringBuilder builder = new StringBuilder();
+            while (iterator.hasNext()) {
+                builder.append("," + iterator.next().toString());
+            }
+            v.set(builder.toString().replaceFirst(",", ""));
+            context.write(key, v);
+        }
+    }
 
-		Configuration conf = new Configuration();
-		conf.set("mapred.textoutputformat.separator", " ");
+    public static void run() throws IOException, ClassNotFoundException,
+            InterruptedException {
+        String inputPath = ItemBasedCFDriver.path.get("step3InputPath");
+        String outputPath = ItemBasedCFDriver.path.get("step3OutputPath");
 
-		Job job = Job.getInstance(conf);
+        Configuration conf = new Configuration();
+        conf.set("mapred.textoutputformat.separator", " ");
 
-		HDFS hdfs = new HDFS(conf);
-		hdfs.rmr(outputPath);
+        Job job = Job.getInstance(conf);
 
-		job.setMapperClass(Step3_Mapper.class);
-		job.setReducerClass(Step3_Reducer.class);
-		job.setNumReduceTasks(ItemBasedCFDriver.ReducerNumber);
+        HDFS hdfs = new HDFS(conf);
+        hdfs.rmr(outputPath);
 
-		job.setJarByClass(CalculateSimilarityStep3.class);
+        job.setMapperClass(Step3_Mapper.class);
+        job.setReducerClass(Step3_Reducer.class);
+        job.setNumReduceTasks(ItemBasedCFDriver.ReducerNumber);
 
-		job.setMapOutputKeyClass(Text.class);
-		job.setMapOutputValueClass(IntWritable.class);
-		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(Text.class);
+        job.setJarByClass(CalculateSimilarityStep3.class);
 
-		job.setInputFormatClass(TextInputFormat.class);
-		job.setOutputFormatClass(TextOutputFormat.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(Text.class);
 
-		FileInputFormat.setInputPaths(job, new Path(inputPath));
-		FileOutputFormat.setOutputPath(job, new Path(outputPath));
+        job.setInputFormatClass(TextInputFormat.class);
+        job.setOutputFormatClass(TextOutputFormat.class);
 
-		job.waitForCompletion(true);
-	}
+        FileInputFormat.setInputPaths(job, new Path(inputPath));
+        FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
-	public static void main(String[] args) throws ClassNotFoundException,
-			IOException, InterruptedException {
-		run();
-	}
+        job.waitForCompletion(true);
+    }
+
 
 }

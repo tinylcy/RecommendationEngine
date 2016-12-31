@@ -84,9 +84,4 @@ public class IAndKMatrixMultiplicationStep1 {
 
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException,
-			IOException, InterruptedException {
-		run();
-	}
-
 }

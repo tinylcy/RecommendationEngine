@@ -90,12 +90,5 @@ public class BlockMatrixMultiplicationStep3 {
 		job.waitForCompletion(true);
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException,
-			IOException, InterruptedException {
-		long beginTime = System.currentTimeMillis();
-		run();
-		long endTime = System.currentTimeMillis();
-		System.out.println("耗时：" + (endTime - beginTime) + "ms");
-	}
 
 }
