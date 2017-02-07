@@ -2,11 +2,11 @@
 
 The key of Recommendation Engine is an efficient and scalable implementation of item-based collaborative filtering (CF) recommendation algorithm based on Hadoop.
 
-### purpose
+### Purpose
 
 Item-based CF algorithm has become one of the most popular algorithms in recommendation systems. However, the item-based CF algorithm has been traditionally run in stand-alone mode and can be hindered by some hardware constraints, such as memory and computational limitations. Besides, in recent years recommendation systems are usually required to process large volumes of information with high dimensions, which poses some key challenges to provide recommendations quickly. So despite some excellent algorithms like item based CF running well in stand-alone mode, there is an impracticality in the condition of huge amount of users and items. This is the scalability problem and whether it can be solved properly determines the further development of recommendation systems.
 
-### algorithms
+### Algorithms
 
 The similarity between items is integrated with empirical analysis.
 
@@ -16,7 +16,7 @@ Once the similarity between items have been calculated, the next step is computi
 
 ![image](https://github.com/tinylcy/RecommendationEngine/raw/master/data/img/prediction.png)
 
-### run
+### Run
 
 ```shell
 nohup hadoop jar RecommendationEngine.jar -filename filename -reducer reducer -n n -m m -p p -q q -r r 
@@ -34,15 +34,15 @@ nohup hadoop jar RecommendationEngine.jar -filename filename -reducer reducer -n
 * **path** : HDFS path
 * **mode** : the mode of matrix multiplication
 
-### environments
+### Environments
 
 * Ubuntu 14.04 (or other Linux distributions)
 * JDK 7
 * Hadoop 1.2.1 (RecommendationEngine utilizes **DistributedCache** to distribute the smaller files to nodes in cluster and caching them)
 * Sqoop (I have used Sqoop in cron, you can ignore it.)
 
-### contact me
+### Contact me
 
 * Email : tinylcy@gmail.com
-* My Website : http://tinylcy.me/  
+* My Website : http://tinylcy.me 
 
