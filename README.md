@@ -19,8 +19,8 @@ Once the similarity between items have been calculated, the next step is computi
 ### Run
 
 ```shell
-nohup hadoop jar RecommendationEngine.jar -filename filename -reducer reducer -n n -m m -p p -q q -r r 
--host host -path path -mode mode >logfile 2>&1 &
+nohup hadoop jar RecommendationEngine.jar -filename <filename> -reducer <reducer> -n <n> -m <m> -p <p> -q <q> -r <r> 
+-host <host> -path <path> -mode <mode> >logfile 2>&1 &
 ```
 
 * **filename** : input file
